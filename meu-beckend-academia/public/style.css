@@ -1,0 +1,357 @@
+/* ====== GERAL ====== */
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #181818;
+  color: #fff;
+  padding-top: 70px; /* Espaço para o header fixo */
+}
+h1 {
+  color: #fff;
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* ====== CABEÇALHO FIXO COM LOGO E MENU ====== */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px #0002;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  background: rgba(24, 24, 24, 0.95); /* Fundo levemente transparente */
+  backdrop-filter: blur(5px); /* Efeito de blur no fundo */
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+}
+.sistema-nome {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.header-menu a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 32px;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.header-menu a:hover {
+  background: rgba(230, 0, 115, 0.1); /* Fundo sutil ao hover */
+  color: #e60073;
+}
+
+/* ====== HERO CENTRALIZADO E ESCURO ====== */
+.hero-institucional {
+  min-height: 100vh;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mudado para space-between */
+  padding: 0 5%; /* Reduzido o padding lateral */
+}
+.hero-content {
+  max-width: 45%; /* Reduzido para dar mais espaço à imagem */
+  text-align: left; /* Alinhamento à esquerda */
+}
+.hero-content h1 {
+  font-size: 2.6rem;
+  color: #fff;
+  margin-bottom: 18px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.hero-content h1 span {
+  color: #e60073;
+}
+.hero-content p {
+  font-size: 1.18rem;
+  color: #ccc;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.btn-primario, .btn-secundario {
+  background: #e60073;
+  color: #fff;
+  padding: 13px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0002;
+}
+.btn-secundario {
+  background: #23232b;
+  color: #fff;
+}
+.btn-primario:hover, .btn-secundario:hover {
+  background: #ff3385;
+}
+.hero-image {
+  width: 50%; /* Aumentado para ocupar mais espaço */
+}
+
+.hero-image img {
+  max-width: 100%;
+  width: 100%;
+  height: 500px; /* Altura fixa maior */
+  object-fit: cover; /* Mantém proporção da imagem */
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #0006;
+}
+
+/* ====== TABS E SUBTABS (SEU SISTEMA) ====== */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 0 0;
+}
+.tab-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 10px 10px 0 0;
+  margin: 0 2px;
+  border-bottom: 3px solid transparent;
+  transition: background 0.2s, border 0.2s;
+}
+.tab-btn.active, .tab-btn:hover {
+  background: #181818;
+  border-bottom: 3px solid #e60073;
+  color: #e60073;
+}
+.tab-content {
+  display: none;
+  padding: 32px 10% 0 10%;
+  background: #222;
+  min-height: 400px;
+}
+.tab-content.active {
+  display: block;
+}
+.subtabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+.subtab-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 10px 10px 0 0;
+  margin: 0 2px;
+  border-bottom: 3px solid transparent;
+  transition: background 0.2s, border 0.2s;
+}
+.subtab-btn.active, .subtab-btn:hover {
+  background: #181818;
+  border-bottom: 3px solid #e60073;
+  color: #e60073;
+}
+.subtab-content {
+  display: none;
+}
+.subtab-content.active {
+  display: block;
+}
+form {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+label {
+  font-weight: 600;
+}
+input, select, button {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+input, select {
+  background: #181818;
+  color: #fff;
+  border: 1px solid #444;
+}
+button {
+  background: #e60073;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #ff3385;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  background: #181818;
+  margin-bottom: 8px;
+  padding: 14px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li .info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+li .info span {
+  font-size: 1rem;
+}
+.actions button {
+  margin-left: 8px;
+}
+.msg {
+  color: #e60073;
+  margin-bottom: 12px;
+}
+
+/* ====== RECURSOS E SOBRE (INSTITUCIONAL) ====== */
+.recursos {
+  background: #181818; /* Alterado para combinar com o resto do site */
+  padding: 60px 0 40px 0;
+  text-align: center;
+}
+.recursos h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #fff;
+}
+.recursos-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.recurso-card {
+  background: #222; /* Alterado para o mesmo tom dos outros elementos */
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 300px;
+  color: #fff;
+  box-shadow: 0 2px 12px #0002;
+  text-align: left;
+  margin-bottom: 24px;
+  transition: transform 0.2s;
+}
+.recurso-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 8px 32px #0004;
+}
+.recurso-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 18px;
+  color: #e6007a;
+}
+.sobre {
+  background: #181818; /* Alterado para combinar com o resto do site */
+  padding: 60px 0 60px 0;
+  text-align: center;
+}
+
+.sobre-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #222; /* Alterado para o mesmo tom dos cards */
+  border-radius: 16px;
+  padding: 32px 40px;
+  color: #cfd8dc;
+  text-align: left;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 12px #0002;
+}
+.sobre-content ul {
+  margin: 18px 0 0 0;
+  padding-left: 20px;
+  color: #cfd8dc;
+}
+
+/* ====== RODAPÉ ====== */
+.footer {
+  width: 100%;
+  background: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  padding: 12px 0 8px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font-size: 1rem;
+  z-index: 10;
+  margin-top: 0;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 900px) {
+  .hero-institucional {
+    flex-direction: column;
+    gap: 32px;
+    padding: 80px 0 0 0;
+    min-height: 80vh;
+  }
+  .hero-content, .hero-image {
+    max-width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  .hero-image img {
+    max-width: 90vw;
+  }
+  .tab-content {
+    padding: 32px 2% 0 2%;
+  }
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .recursos-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}

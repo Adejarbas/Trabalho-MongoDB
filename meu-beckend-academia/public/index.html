@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestão Academia</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo Academia" class="logo">
+      <span class="sistema-nome">Gestão de Academia</span>
+    </div>
+    <nav class="header-menu">
+      <a href="#recursos">Recursos</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+  </header>
+  
+  <section class="hero-institucional">
+    <div class="hero-content">
+      <h1>Bem-vindo ao <span>Gestão de Academia</span></h1>
+      <p>Gerencie alunos, professores, treinos e planos de forma simples, rápida e eficiente.</p>
+      <div class="hero-buttons">
+        <a href="#recursos" class="btn-primario">Ver Recursos</a>
+        <a href="#sobre" class="btn-secundario">Sobre o Sistema</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="./imagens/academia.webp" alt="Academia">
+    </div>
+  </section>
+
+<!-- Recursos Section -->
+<section class="recursos" id="recursos">
+  <h2>Recursos do Sistema</h2>
+  <div class="recursos-cards">
+    <div class="recurso-card">
+      <div class="icon">👤</div>
+      <h3>Cadastro de Alunos</h3>
+      <p>Gerencie dados dos alunos, contatos e histórico de matrícula.</p>
+    </div>
+    <div class="recurso-card">
+      <div class="icon">🏋️</div>
+      <h3>Controle de Treinos</h3>
+      <p>Monte treinos personalizados e associe a professores e alunos.</p>
+    </div>
+    <div class="recurso-card">
+      <div class="icon">💳</div>
+      <h3>Gestão de Planos</h3>
+      <p>Administre planos, valores e duração para cada aluno.</p>
+    </div>
+  </div>
+</section>
+
+
+
+  <h1>Gestão Academia</h1>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="alunos">Alunos</button>
+    <button class="tab-btn" data-tab="professores">Professores</button>
+    <button class="tab-btn" data-tab="treinos">Treinos</button>
+    <button class="tab-btn" data-tab="planos">Planos</button>
+  </div>
+
+  <!-- Alunos -->
+  <div class="tab-content active" id="alunos">
+    <div class="subtabs">
+      <button class="subtab-btn active" data-subtab="listar-alunos">Listar</button>
+      <button class="subtab-btn" data-subtab="adicionar-aluno">Adicionar</button>
+      <button class="subtab-btn" data-subtab="buscar-aluno">Buscar</button>
+    </div>
+    <div class="subtab-content active" id="listar-alunos">
+      <ul id="lista-alunos"></ul>
+    </div>
+    <div class="subtab-content" id="adicionar-aluno">
+      <div class="msg" id="msg-aluno"></div>
+      <form id="form-aluno">
+        <label>Nome: <input type="text" id="aluno-nome" required></label>
+        <label>Email: <input type="email" id="aluno-email" required></label>
+        <label>Telefone: <input type="text" id="aluno-telefone"></label>
+        <label>Data de Nascimento: <input type="date" id="aluno-dataNascimento"></label>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+    <div class="subtab-content" id="buscar-aluno">
+      <input type="text" id="busca-aluno-nome" placeholder="Buscar por nome">
+      <button onclick="buscarAluno()">Buscar</button>
+      <ul id="busca-lista-alunos"></ul>
+    </div>
+  </div>
+
+  <!-- Professores -->
+  <div class="tab-content" id="professores">
+    <div class="subtabs">
+      <button class="subtab-btn active" data-subtab="listar-professores">Listar</button>
+      <button class="subtab-btn" data-subtab="adicionar-professor">Adicionar</button>
+      <button class="subtab-btn" data-subtab="buscar-professor">Buscar</button>
+    </div>
+    <div class="subtab-content active" id="listar-professores">
+      <ul id="lista-professores"></ul>
+    </div>
+    <div class="subtab-content" id="adicionar-professor">
+      <div class="msg" id="msg-professor"></div>
+      <form id="form-professor">
+        <label>Nome: <input type="text" id="prof-nome" required></label>
+        <label>Email: <input type="email" id="prof-email" required></label>
+        <label>Especialidade: <input type="text" id="prof-especialidade" required></label>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+    <div class="subtab-content" id="buscar-professor">
+      <input type="text" id="busca-prof-nome" placeholder="Buscar por nome">
+      <button onclick="buscarProfessor()">Buscar</button>
+      <ul id="busca-lista-professores"></ul>
+    </div>
+  </div>
+
+  <!-- Treinos -->
+  <div class="tab-content" id="treinos">
+    <div class="subtabs">
+      <button class="subtab-btn active" data-subtab="listar-treinos">Listar</button>
+      <button class="subtab-btn" data-subtab="adicionar-treino">Adicionar</button>
+      <button class="subtab-btn" data-subtab="buscar-treino">Buscar</button>
+    </div>
+    <div class="subtab-content active" id="listar-treinos">
+      <ul id="lista-treinos"></ul>
+    </div>
+    <div class="subtab-content" id="adicionar-treino">
+      <div class="msg" id="msg-treino"></div>
+      <form id="form-treino">
+        <label>Aluno:
+          <select id="treino-aluno" required>
+            <option value="">Selecione o Aluno</option>
+          </select>
+        </label>
+        <label>Exercícios (separados por vírgula): <input type="text" id="treino-exercicios" required></label>
+        <label>Professor:
+          <select id="treino-professor" required>
+            <option value="">Selecione o Professor</option>
+          </select>
+        </label>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+    <div class="subtab-content" id="buscar-treino">
+      <input type="text" id="busca-treino-nome" placeholder="Buscar por nome">
+      <button onclick="buscarTreino()">Buscar</button>
+      <ul id="busca-lista-treinos"></ul>
+    </div>
+  </div>
+
+  <!-- Planos -->
+<div class="tab-content" id="planos">
+  <div class="subtabs">
+    <button class="subtab-btn active" data-subtab="listar-planos">Listar</button>
+    <button class="subtab-btn" data-subtab="adicionar-plano">Adicionar</button>
+    <button class="subtab-btn" data-subtab="buscar-plano">Buscar</button>
+  </div>
+  <div class="subtab-content active" id="listar-planos">
+    <ul id="lista-planos"></ul>
+  </div>
+  <div class="subtab-content" id="adicionar-plano">
+    <div class="msg" id="msg-plano"></div>
+    <form id="form-plano">
+      <label>Aluno:
+        <select id="plano-aluno" required>
+          <option value="">Selecione o Aluno</option>
+        </select>
+      </label>
+      <label>Preço: <input type="number" id="plano-preco" required></label>
+      <label>Duração (meses): <input type="number" id="plano-duracaoMeses" required></label>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+  <div class="subtab-content" id="buscar-plano">
+    <input type="text" id="busca-plano-nome" placeholder="Buscar por aluno">
+    <button onclick="buscarPlano()">Buscar</button>
+    <ul id="busca-lista-planos"></ul>
+  </div>
+</div>
+
+<!-- Sobre Section -->
+<section class="sobre" id="sobre">
+  <h2>Sobre o Sistema</h2>
+  <div class="sobre-content">
+    <p>
+      O Gestão de Academia é uma plataforma desenvolvida para facilitar o gerenciamento completo de academias.<br>
+      Com ela, você pode:
+    </p>
+    <ul>
+      <li>Cadastrar, editar e remover alunos, professores, treinos e planos</li>
+      <li>Associar treinos a alunos e professores</li>
+      <li>Gerenciar planos de assinatura e pagamentos</li>
+      <li>Visualizar informações de forma centralizada e intuitiva</li>
+      <li>Utilizar uma API RESTful para integração com outros sistemas</li>
+    </ul>
+  </div>
+</section>
+
+
+  <script src="main.js"></script>
+  <footer class="footer">
+    © 2025 Gestão Academia - Todos os direitos reservados
+  </footer>
+</body>
+</html>
