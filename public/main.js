@@ -38,94 +38,100 @@ const API = {
   }
   
   // --------- Alunos ---------
-  const formAluno = document.getElementById('form-aluno')
-  const listaAlunos = document.getElementById('lista-alunos')
-  const buscaListaAlunos = document.getElementById('busca-lista-alunos')
-  let alunosCache = []
-  
-  formAluno.onsubmit = async e => {
-    e.preventDefault()
-    const aluno = {
-      nome: document.getElementById('aluno-nome').value,
-      email: document.getElementById('aluno-email').value,
-      telefone: document.getElementById('aluno-telefone').value,
-      dataNascimento: document.getElementById('aluno-dataNascimento').value
-    }
-    try {
-      const res = await fetch(API.alunos, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(aluno)
-      })
-      if (!res.ok) {
-        const erro = await res.json()
-        showMsg('msg-aluno', erro.message || 'Erro ao cadastrar', true)
-      } else {
-        showMsg('msg-aluno', 'Aluno cadastrado!')
-        formAluno.reset()
-        fetchAlunos()
-        preencherAlunosNoPlano()
-      }
-    } catch {
-      showMsg('msg-aluno', 'Erro de conexão', true)
-    }
+const formAluno = document.getElementById('form-aluno')
+const listaAlunos = document.getElementById('lista-alunos')
+const buscaListaAlunos = document.getElementById('busca-lista-alunos')
+let alunosCache = []
+
+formAluno.onsubmit = async e => {
+  e.preventDefault()
+  const aluno = {
+    nome: document.getElementById('aluno-nome').value,
+    email: document.getElementById('aluno-email').value,
+    telefone: document.getElementById('aluno-telefone').value,
+    dataNascimento: document.getElementById('aluno-dataNascimento').value,
+    idade: parseInt(document.getElementById('aluno-idade').value),
+    peso: parseFloat(document.getElementById('aluno-peso').value)
   }
-  
-  async function fetchAlunos() {
-    listaAlunos.innerHTML = ''
-    const res = await fetch(API.alunos)
-    const alunos = await res.json()
-    alunosCache = alunos
-    alunos.forEach(aluno => {
-      const dataNasc = aluno.dataNascimento ? new Date(aluno.dataNascimento).toLocaleDateString() : ''
-      const telefone = aluno.telefone || ''
-      const li = document.createElement('li')
-      li.innerHTML = `
-        <div class="info">
-          <span><strong>Nome:</strong> ${aluno.nome}</span>
-          <span><strong>Email:</strong> ${aluno.email}</span>
-          <span><strong>Telefone:</strong> ${telefone}</span>
-          <span><strong>Data de Nascimento:</strong> ${dataNasc}</span>
-        </div>
-        <span class="actions">
-          <button onclick="excluirAluno('${aluno._id}')">Excluir</button>
-        </span>
-      `
-      listaAlunos.appendChild(li)
+  try {
+    const res = await fetch(API.alunos, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(aluno)
     })
+    if (!res.ok) {
+      const erro = await res.json()
+      showMsg('msg-aluno', erro.message || 'Erro ao cadastrar', true)
+    } else {
+      showMsg('msg-aluno', 'Aluno cadastrado!')
+      formAluno.reset()
+      fetchAlunos()
+      preencherAlunosNoPlano()
+    }
+  } catch {
+    showMsg('msg-aluno', 'Erro de conexão', true)
   }
-  window.excluirAluno = async id => {
-    if (!confirm('Excluir aluno?')) return
-    await fetch(`${API.alunos}/${id}`, { method: 'DELETE' })
-    fetchAlunos()
-    preencherAlunosNoPlano()
-  }
+}
+
+async function fetchAlunos() {
+  listaAlunos.innerHTML = ''
+  const res = await fetch(API.alunos)
+  const alunos = await res.json()
+  alunosCache = alunos
+  alunos.forEach(aluno => {
+    const dataNasc = aluno.dataNascimento ? new Date(aluno.dataNascimento).toLocaleDateString() : ''
+    const telefone = aluno.telefone || ''
+    const li = document.createElement('li')
+    li.innerHTML = `
+      <div class="info">
+        <span><strong>Nome:</strong> ${aluno.nome}</span>
+        <span><strong>Email:</strong> ${aluno.email}</span>
+        <span><strong>Telefone:</strong> ${telefone}</span>
+        <span><strong>Data de Nascimento:</strong> ${dataNasc}</span>
+        <span><strong>Idade:</strong> ${aluno.idade}</span>
+        <span><strong>Peso:</strong> ${aluno.peso} kg</span>
+      </div>
+      <span class="actions">
+        <button onclick="excluirAluno('${aluno._id}')">Excluir</button>
+      </span>
+    `
+    listaAlunos.appendChild(li)
+  })
+}
+window.excluirAluno = async id => {
+  if (!confirm('Excluir aluno?')) return
+  await fetch(`${API.alunos}/${id}`, { method: 'DELETE' })
   fetchAlunos()
-  
-  // Buscar aluno
-  window.buscarAluno = async function() {
-    const nome = document.getElementById('busca-aluno-nome').value.toLowerCase()
-    buscaListaAlunos.innerHTML = ''
-    const res = await fetch(API.alunos)
-    const alunos = await res.json()
-    alunos.filter(a => a.nome.toLowerCase().includes(nome)).forEach(aluno => {
-      const dataNasc = aluno.dataNascimento ? new Date(aluno.dataNascimento).toLocaleDateString() : ''
-      const telefone = aluno.telefone || ''
-      const li = document.createElement('li')
-      li.innerHTML = `
-        <div class="info">
-          <span><strong>Nome:</strong> ${aluno.nome}</span>
-          <span><strong>Email:</strong> ${aluno.email}</span>
-          <span><strong>Telefone:</strong> ${telefone}</span>
-          <span><strong>Data de Nascimento:</strong> ${dataNasc}</span>
-        </div>
-        <span class="actions">
-          <button onclick="excluirAluno('${aluno._id}')">Excluir</button>
-        </span>
-      `
-      buscaListaAlunos.appendChild(li)
-    })
-  }
+  preencherAlunosNoPlano()
+}
+fetchAlunos()
+
+// Buscar aluno
+window.buscarAluno = async function() {
+  const nome = document.getElementById('busca-aluno-nome').value.toLowerCase()
+  buscaListaAlunos.innerHTML = ''
+  const res = await fetch(API.alunos)
+  const alunos = await res.json()
+  alunos.filter(a => a.nome.toLowerCase().includes(nome)).forEach(aluno => {
+    const dataNasc = aluno.dataNascimento ? new Date(aluno.dataNascimento).toLocaleDateString() : ''
+    const telefone = aluno.telefone || ''
+    const li = document.createElement('li')
+    li.innerHTML = `
+      <div class="info">
+        <span><strong>Nome:</strong> ${aluno.nome}</span>
+        <span><strong>Email:</strong> ${aluno.email}</span>
+        <span><strong>Telefone:</strong> ${telefone}</span>
+        <span><strong>Data de Nascimento:</strong> ${dataNasc}</span>
+        <span><strong>Idade:</strong> ${aluno.idade}</span>
+        <span><strong>Peso:</strong> ${aluno.peso} kg</span>
+      </div>
+      <span class="actions">
+        <button onclick="excluirAluno('${aluno._id}')">Excluir</button>
+      </span>
+    `
+    buscaListaAlunos.appendChild(li)
+  })
+}
   
   // --------- Professores ---------
   const formProf = document.getElementById('form-professor')

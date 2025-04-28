@@ -10,8 +10,22 @@ const alunoSchema = new mongoose.Schema({
         required: true, 
         unique: true 
     },
-    dataNascimento: Date,
-    telefone: String,
+    dataNascimento: { 
+        type: Date, 
+        required: true 
+    },
+    telefone: { 
+        type: String, 
+        required: true 
+    },
+    idade: { 
+        type: Number, 
+        required: true 
+    }, // Inteiro
+    peso: { 
+        type: Number, 
+        required: true 
+    }, // Decimal
     endereco: String,
     plano: { 
         type: mongoose.Schema.Types.ObjectId, 

@@ -52,14 +52,28 @@ export const validateAluno = [
         }),
 
     check("telefone")
-        .optional()
+        .notEmpty()
+        .withMessage("O telefone é obrigatório")
         .matches(/^\d{10,11}$/)
         .withMessage("Telefone deve ter 10 ou 11 dígitos"),
 
     check("dataNascimento")
-        .optional()
+        .notEmpty()
+        .withMessage("A data de nascimento é obrigatória")
         .isISO8601()
         .withMessage("Data de nascimento inválida"),
+
+    check("idade")
+        .notEmpty()
+        .withMessage("A idade é obrigatória")
+        .isInt({ min: 0 })
+        .withMessage("Idade deve ser um número inteiro positivo"),
+
+    check("peso")
+        .notEmpty()
+        .withMessage("O peso é obrigatório")
+        .isFloat({ min: 0 })
+        .withMessage("Peso deve ser um número decimal positivo"),
 
     validateRequest
 ];
