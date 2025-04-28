@@ -60,7 +60,7 @@ PUT /alunos/:id — Atualiza um aluno
 
 DELETE /alunos/:id — Remove um aluno
 
-GET /alunos/filtrar — Consulta avançada com operadores (exemplo: idade mínima, peso máximo, etc.)
+
 
 ## Professores
 
@@ -72,7 +72,7 @@ PUT /professores/:id — Atualiza um professor
 
 DELETE /professores/:id — Remove um professor
 
-GET /professores/filtrar — Consulta avançada com operadores (exemplo: especialidade, tempo de experiência, etc.)
+
 
 ## Treinos
 
@@ -84,7 +84,7 @@ PUT /treinos/:id — Atualiza um treino
 
 DELETE /treinos/:id — Remove um treino
 
-GET /treinos/filtrar — Consulta avançada com operadores (exemplo: duração mínima, tipo, etc.)
+
 
 ## Planos
 
@@ -96,17 +96,7 @@ PUT /planos/:id — Atualiza um plano
 
 DELETE /planos/:id — Remove um plano
 
-GET /planos/filtrar — Consulta avançada com operadores (exemplo: valor mínimo, duração, etc.)
-
-## Como testar a API
-- Utilize o arquivo `api.http` com a extensão REST Client no VS Code para testar as rotas GET, POST, PUT e DELETE.
-
-## 📄 Documentação das Chamadas REST
-No projeto há um arquivo api.http (ou requests.rest) com exemplos de chamadas GET, POST, PUT e DELETE para testar a API usando a extensão REST Client do VSCode.
-
 ## 📝 Observações
 Todos os dados são validados com express-validator.
-O projeto segue as melhores práticas de organização de código e versionamento.
-O sistema está pronto para ser hospedado em plataformas como Vercel, Render, Cyclic, etc.
 
 ## Trabalho prático para a disciplina de Banco de Dados - MongoDB.
