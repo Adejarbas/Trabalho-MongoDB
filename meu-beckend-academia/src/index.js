@@ -38,10 +38,12 @@ app.use((err, req, res, next) => {
   })
 })
 
-connectToDatabase().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`)
-  })
-}).catch(err => {
-  console.error('Erro ao conectar ao MongoDB:', err)
-})
+let isConnected = false;
+
+export default async function handler(req, res) {
+  if (!isConnected) {
+    await connectToDatabase();
+    isConnected = true;
+  }
+  app(req, res);
+}
