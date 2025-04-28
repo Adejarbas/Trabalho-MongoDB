@@ -9,7 +9,7 @@ Este projeto tem como objetivo demonstrar a criação de uma aplicação web ful
 ## 👥 Integrantes
 
 - Daniel Rodrigues Lopes Adejarbas (https://github.com/Adejarbas)
-- Taise Miguel Rodrigues 
+- Taise Miguel Rodrigues (https://github.com/TaiseMiguel)
 
 ## 🌐 Link da API Pública
 
