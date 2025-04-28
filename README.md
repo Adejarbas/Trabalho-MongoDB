@@ -9,15 +9,15 @@ Este projeto tem como objetivo demonstrar a criação de uma aplicação web ful
 ## 👥 Integrantes
 
 - Daniel Rodrigues Lopes Adejarbas (https://github.com/Adejarbas)
-- Taise Miguel Rodrigues 
+- Taise Miguel Rodrigues (https://github.com/TaiseMiguel)
 
 ## 🌐 Link da API Pública
 
-> **(https://trabalho-mongo-jq63f8xol-daniels-projects-d1901ee1.vercel.app/)**
+> **(https://trabalho-mongo-db.vercel.app/)**
 
 ## 🖥️ Link do Frontend
 
-> O frontend pode ser aberto diretamente pelo arquivo `index.html` ou hospedado em um serviço como Vercel/Netlify.
+> O frontend pode ser aberto diretamente pelo arquivo `index.html` ou hospedado em https://trabalho-mongo-db.vercel.app/
 
 ## 🚀 Como rodar localmente
 
@@ -98,7 +98,8 @@ DELETE /planos/:id — Remove um plano
 
 GET /planos/filtrar — Consulta avançada com operadores (exemplo: valor mínimo, duração, etc.)
 
-
+## Como testar a API
+- Utilize o arquivo `api.http` com a extensão REST Client no VS Code para testar as rotas GET, POST, PUT e DELETE.
 
 ## 📄 Documentação das Chamadas REST
 No projeto há um arquivo api.http (ou requests.rest) com exemplos de chamadas GET, POST, PUT e DELETE para testar a API usando a extensão REST Client do VSCode.
