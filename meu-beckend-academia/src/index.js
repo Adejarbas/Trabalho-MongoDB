@@ -14,12 +14,12 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
-// Servir arquivos estáticos da pasta 'public'
+// Servir arquivos estáticos da pasta 'public' na raiz do projeto
 app.use(express.static(path.resolve(process.cwd(), 'public')))
 
-// Rota raiz para servir o index.html
+// Rota raiz para servir o index.html da pasta 'public'
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve('public', 'index.html'))
+  res.sendFile(path.resolve(process.cwd(), 'public', 'index.html'))
 })
 
 // Suas rotas de API
