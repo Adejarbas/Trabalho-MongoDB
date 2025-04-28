@@ -2,7 +2,6 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { connectToDatabase } from './config/db.js'
 import alunoRoutes from './routes/alunoRoutes.js'
 import professorRoutes from './routes/professorRoutes.js'
@@ -14,10 +13,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// Caminho absoluto para a pasta public
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const publicPath = path.join(__dirname, '../public')
+// Caminho absoluto para a pasta public (na raiz do projeto)
+const publicPath = path.join(process.cwd(), 'public')
 
 // Servir arquivos estáticos
 app.use(express.static(publicPath))
