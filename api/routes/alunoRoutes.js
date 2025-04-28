@@ -11,4 +11,7 @@ router.post('/', validateAluno, alunoController.createAluno)
 router.put('/:id', [validateObjectId, validateAluno], alunoController.updateAluno)
 router.delete('/:id', validateObjectId, alunoController.deleteAluno)
 
+
+router.get('/consulta/avancada', alunoController.getAlunosAvancado);
+
 export default router

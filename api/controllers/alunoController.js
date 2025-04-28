@@ -72,3 +72,20 @@ export async function deleteAluno(req, res, next) {
     next(err)
   }
 }
+
+// Consulta avançada: alunos com idade > 18 e peso > 70
+exports.getAlunosAvancado = async (req, res) => {
+  try {
+    const { idade, peso } = req.query;
+    // Exemplo: /alunos/consulta?idade=18&peso=70
+    const alunos = await Aluno.find({
+      $and: [
+        { idade: { $gt: Number(idade) || 18 } },
+        { peso: { $gt: Number(peso) || 70 } }
+      ]
+    });
+    res.json(alunos);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
