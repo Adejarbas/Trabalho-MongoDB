@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { connectToDatabase } from './config/db.js'
 import alunoRoutes from './routes/alunoRoutes.js'
 import professorRoutes from './routes/professorRoutes.js'
@@ -9,17 +10,21 @@ import treinoRoutes from './routes/treinoRoutes.js'
 import planoRoutes from './routes/planoRoutes.js'
 
 const app = express()
-const PORT = process.env.PORT || 3000
 
 app.use(cors())
 app.use(express.json())
 
-// Servir arquivos estáticos da pasta 'public' na raiz do projeto
-app.use(express.static(path.resolve(process.cwd(), 'public')))
+// Caminho absoluto para a pasta public
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const publicPath = path.join(__dirname, '../public')
 
-// Rota raiz para servir o index.html da pasta 'public'
+// Servir arquivos estáticos
+app.use(express.static(publicPath))
+
+// Rota raiz para servir index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(process.cwd(), 'public', 'index.html'))
+  res.sendFile(path.join(publicPath, 'index.html'))
 })
 
 // Suas rotas de API
@@ -38,12 +43,13 @@ app.use((err, req, res, next) => {
   })
 })
 
-let isConnected = false;
+// Handler para Vercel
+let isConnected = false
 
 export default async function handler(req, res) {
   if (!isConnected) {
-    await connectToDatabase();
-    isConnected = true;
+    await connectToDatabase()
+    isConnected = true
   }
-  app(req, res);
+  app(req, res)
 }
