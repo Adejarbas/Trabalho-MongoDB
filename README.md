@@ -13,7 +13,7 @@ Este projeto tem como objetivo demonstrar a criação de uma aplicação web ful
 
 ## 🌐 Link da API Pública
 
-> **(https://trabalho-mongo-jq63f8xol-daniels-projects-d1901ee1.vercel.app/)**
+> **(https://trabalho-mongo-db.vercel.app/)**
 
 ## 🖥️ Link do Frontend
 
