@@ -35,3 +35,7 @@ app.use((err, req, res, next) => {
       details: err.message
     })
   })
+
+  app.get('/', (req, res) => {
+    res.send('API da Academia rodando! 🚀');
+  });  
