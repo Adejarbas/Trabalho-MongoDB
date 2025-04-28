@@ -15,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 // Servir arquivos estáticos da pasta 'public'
-app.use(express.static(path.resolve('public')))
+app.use(express.static(path.resolve(process.cwd(), 'public')))
 
 // Rota raiz para servir o index.html
 app.get('/', (req, res) => {
