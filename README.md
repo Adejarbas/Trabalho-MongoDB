@@ -8,8 +8,8 @@ Este projeto tem como objetivo demonstrar a criação de uma aplicação web ful
 
 ## 👥 Integrantes
 
-- Adejarbas (https://github.com/Adejarbas)
-- [Adicione aqui os nomes e GitHub dos outros integrantes, se houver]
+- Daniel Rodrigues Lopes Adejarbas (https://github.com/Adejarbas)
+- Taise Miguel Rodrigues 
 
 ## 🌐 Link da API Pública
 
