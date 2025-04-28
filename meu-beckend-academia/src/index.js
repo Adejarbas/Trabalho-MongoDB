@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
+import path from 'path'
 import { connectToDatabase } from './config/db.js'
 import alunoRoutes from './routes/alunoRoutes.js'
 import professorRoutes from './routes/professorRoutes.js'
@@ -13,11 +14,29 @@ const PORT = process.env.PORT || 3000
 app.use(cors())
 app.use(express.json())
 
-// Suas rotas
+// Servir arquivos estáticos da pasta 'public'
+app.use(express.static(path.resolve('public')))
+
+// Rota raiz para servir o index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('public', 'index.html'))
+})
+
+// Suas rotas de API
 app.use('/alunos', alunoRoutes)
 app.use('/professores', professorRoutes)
 app.use('/treinos', treinoRoutes)
 app.use('/planos', planoRoutes)
+
+// Middleware de erro
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).json({
+    error: true,
+    message: 'Erro interno do servidor',
+    details: err.message
+  })
+})
 
 connectToDatabase().then(() => {
   app.listen(PORT, () => {
@@ -26,16 +45,3 @@ connectToDatabase().then(() => {
 }).catch(err => {
   console.error('Erro ao conectar ao MongoDB:', err)
 })
-
-app.use((err, req, res, next) => {
-    console.error(err.stack)
-    res.status(500).json({
-      error: true,
-      message: 'Erro interno do servidor',
-      details: err.message
-    })
-  })
-
-  app.get('/', (req, res) => {
-    res.send('API da Academia rodando! 🚀');
-  });  
