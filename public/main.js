@@ -1,9 +1,9 @@
 const API = {
-    alunos: 'http://localhost:3000/alunos',
-    professores: 'http://localhost:3000/professores',
-    treinos: 'http://localhost:3000/treinos',
-    planos: 'http://localhost:3000/planos'
-  }
+  alunos: '/alunos',
+  professores: '/professores',
+  treinos: '/treinos',
+  planos: '/planos'
+}
   
   // --------- Tabs e Subtabs ---------
   document.querySelectorAll('.tab-btn').forEach(btn => {
