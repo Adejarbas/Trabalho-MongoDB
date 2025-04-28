@@ -1,6 +1,6 @@
 import express from 'express';
 import * as alunoController from '../controllers/alunoController.js';
-import { validateAluno, validateObjectId } from '../middlewares/validationMiddleware.js';
+import { validateAluno, validateObjectId } from '../middlewares/validations.js'
 
 const router = express.Router()
 
