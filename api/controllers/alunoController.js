@@ -8,7 +8,7 @@ export async function getAlunos(req, res, next) {
     const alunos = await db.collection('alunos').find().toArray()
     res.json(alunos)
   } catch (err) {
-    next(err) // Usar next(err) em vez de res.status(500)
+    next(err)
   }
 }
 
@@ -30,7 +30,6 @@ export async function getAlunoById(req, res, next) {
 export async function createAluno(req, res, next) {
   try {
     const db = getDb()
-    // Remover verificação de email (já está no middleware de validação)
     const result = await db.collection('alunos').insertOne(req.body)
     res.status(201).json({ _id: result.insertedId, ...req.body })
   } catch (err) {
@@ -43,7 +42,6 @@ export async function updateAluno(req, res, next) {
   try {
     const db = getDb()
     const id = new ObjectId(req.params.id)
-    // Remover verificação de email (já está no middleware de validação)
     const result = await db.collection('alunos').updateOne(
       { _id: id },
       { $set: req.body }
@@ -73,7 +71,7 @@ export async function deleteAluno(req, res, next) {
   }
 }
 
-// Consulta avançada: alunos com idade > 18 e peso > 70
+// Consulta avançada: alunos com idade > X e peso > Y
 export async function getAlunosAvancado(req, res, next) {
   try {
     const db = getDb();
