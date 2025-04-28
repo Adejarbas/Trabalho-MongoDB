@@ -17,7 +17,7 @@ Este projeto tem como objetivo demonstrar a criação de uma aplicação web ful
 
 ## 🖥️ Link do Frontend
 
-> O frontend pode ser aberto diretamente pelo arquivo `index.html` ou hospedado em um serviço como Vercel/Netlify.
+> O frontend pode ser aberto diretamente pelo arquivo `index.html` ou hospedado em https://trabalho-mongo-db.vercel.app/
 
 ## 🚀 Como rodar localmente
 
@@ -103,12 +103,6 @@ GET /planos/filtrar — Consulta avançada com operadores (exemplo: valor mínim
 
 ## 📄 Documentação das Chamadas REST
 No projeto há um arquivo api.http (ou requests.rest) com exemplos de chamadas GET, POST, PUT e DELETE para testar a API usando a extensão REST Client do VSCode.
-
-## Como rodar localmente (opcional)
-1. Clone o repositório
-2. Instale as dependências com `npm install`
-3. Configure as variáveis de ambiente
-4. Rode com `npm start`
 
 ## 📝 Observações
 Todos os dados são validados com express-validator.
