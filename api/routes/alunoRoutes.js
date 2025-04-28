@@ -1,6 +1,6 @@
-import express from 'express'
-import * as alunoController from '../controllers/alunoController.js'
-import { validateAluno, validateObjectId } from '../middlewares/validations.js'
+import express from 'express';
+import * as alunoController from '../controllers/alunoController.js';
+import { validateAluno, validateObjectId } from '../middlewares/validationMiddleware.js';
 
 const router = express.Router()
 
@@ -14,4 +14,4 @@ router.delete('/:id', validateObjectId, alunoController.deleteAluno)
 
 router.get('/consulta/avancada', alunoController.getAlunosAvancado);
 
-export default router
+export default router;

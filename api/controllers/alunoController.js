@@ -74,18 +74,19 @@ export async function deleteAluno(req, res, next) {
 }
 
 // Consulta avançada: alunos com idade > 18 e peso > 70
-exports.getAlunosAvancado = async (req, res) => {
+export async function getAlunosAvancado(req, res, next) {
   try {
-    const { idade, peso } = req.query;
-    // Exemplo: /alunos/consulta?idade=18&peso=70
-    const alunos = await Aluno.find({
+    const db = getDb();
+    const idade = Number(req.query.idade) || 18;
+    const peso = Number(req.query.peso) || 70;
+    const alunos = await db.collection('alunos').find({
       $and: [
-        { idade: { $gt: Number(idade) || 18 } },
-        { peso: { $gt: Number(peso) || 70 } }
+        { idade: { $gt: idade } },
+        { peso: { $gt: peso } }
       ]
-    });
+    }).toArray();
     res.json(alunos);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    next(err);
   }
-};
+}
